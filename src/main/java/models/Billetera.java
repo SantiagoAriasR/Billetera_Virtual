@@ -27,10 +27,4 @@ public class Billetera {
     public void setSaldo(float saldo) {
         this.saldo = saldo;
     }
-
-    public String test(){
-        String palabra = "pene";
-        System.out.println(palabra);
-        return palabra;
-    }
 }

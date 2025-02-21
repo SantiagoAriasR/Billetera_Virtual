@@ -5,10 +5,6 @@ import java.util.UUID;
 import App.App;
 
 public class Transaccion {
-
-    // Necesitamos usar el app para comunicarnos con la empresa desde el modelo
-    Empresa empresa;
-
     // Atributos
     private String idTransaccion;
     private float monto;
@@ -17,7 +13,6 @@ public class Transaccion {
 
     // Contructor
     public Transaccion(float monto, LocalDate fecha, Categoria categoria) {
-        this.empresa = App.getEmpresa();
         this.idTransaccion = generarIdUnico();
         this.monto = monto;
         this.fecha = fecha;
@@ -62,20 +57,7 @@ public class Transaccion {
     // Función para generar IdUnico Transaccion
     private String generarIdUnico() {
         String nuevoId;
-        do {
-            nuevoId = "PED-" + UUID.randomUUID();
-        } while (idTransaccionExiste(nuevoId)); // Verificar que no exista
+        nuevoId = "TRA-" + UUID.randomUUID();
         return nuevoId;
-    }
-
-    // Función para verificar si el IdTransaccion existe
-    private boolean idTransaccionExiste(String id) {
-        boolean existe = false;
-        for(Transaccion transaccion : empresa.getListaTransacciones()) {
-            if (transaccion.getIdTransaccion().equals(id)) {
-                return true;
-            }
-        }
-        return existe;
     }
 }
