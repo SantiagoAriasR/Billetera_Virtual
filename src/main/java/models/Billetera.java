@@ -29,7 +29,7 @@ public class Billetera {
     }
 
     public String test(){
-        String palabra = "pene";
+        String palabra = "hola";
         System.out.println(palabra);
         return palabra;
     }
