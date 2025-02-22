@@ -7,14 +7,16 @@ public class Usuario {
     private String numeroIdentificacion;
     private String correo;
     private String contrasena;
+    private boolean estado;
     
     // Contructor
-    public Usuario(String nombre, String direccion, String numeroIdentificacion, String correo, String contrasena) {
+    public Usuario(String nombre, String direccion, String numeroIdentificacion, String correo, String contrasena, boolean estado) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.numeroIdentificacion = numeroIdentificacion;
         this.correo = correo;
         this.contrasena = contrasena;
+        this.estado = estado;
     }
 
     // Getters y Setters
@@ -58,5 +60,11 @@ public class Usuario {
         this.contrasena = contrasena;
     }
 
-    
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
 }

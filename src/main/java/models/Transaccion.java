@@ -1,6 +1,7 @@
 package models;
 
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 import java.util.UUID;
 import App.App;
 
@@ -8,15 +9,19 @@ public class Transaccion {
     // Atributos
     private String idTransaccion;
     private float monto;
-    private LocalDate fecha;
+    private LocalDateTime fecha;
     private Categoria categoria;
+    private Billetera origen;
+    private Billetera destino;
 
     // Contructor
-    public Transaccion(float monto, LocalDate fecha, Categoria categoria) {
+    public Transaccion(float monto, LocalDateTime fecha, Categoria categoria, Billetera origen, Billetera destino) {
         this.idTransaccion = generarIdUnico();
         this.monto = monto;
         this.fecha = fecha;
         this.categoria = categoria;
+        this.origen = origen;
+        this.destino = destino;
     }
 
     // Getters y Setters
@@ -36,11 +41,11 @@ public class Transaccion {
         this.monto = monto;
     }
 
-    public LocalDate getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
 
@@ -50,6 +55,22 @@ public class Transaccion {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public Billetera getOrigen() {
+        return origen;
+    }
+
+    public void setOrigen(Billetera origen) {
+        this.origen = origen;
+    }
+
+    public Billetera getDestino() {
+        return destino;
+    }
+
+    public void setDestino(Billetera destino) {
+        this.destino = destino;
     }
 
     // Funciones

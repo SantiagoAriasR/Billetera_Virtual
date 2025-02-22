@@ -5,12 +5,14 @@ import java.util.LinkedList;
 public class Empresa {
     // Atributos 
     private String nombre;
-    private LinkedList<Transaccion> listaTransacciones;
+    private LinkedList<Usuario> listaUsuarios;
+    private LinkedList<Billetera> listaBilleteras;
 
     // Constructor
     public Empresa(String nombre) {
         this.nombre = nombre;
-        listaTransacciones = new LinkedList<>();
+        listaUsuarios = new LinkedList<>();
+        listaBilleteras = new LinkedList<>();
     }
 
     // Getters y Setters
@@ -22,11 +24,19 @@ public class Empresa {
         this.nombre = nombre;
     }
 
-    public LinkedList<Transaccion> getListaTransacciones() {
-        return listaTransacciones;
+    public LinkedList<Usuario> getListaUsuarios() {
+        return listaUsuarios;
     }
 
-    public void setListaTransacciones(LinkedList<Transaccion> listaTransacciones) {
-        this.listaTransacciones = listaTransacciones;
+    public void setListaUsuarios(LinkedList<Usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
+    }
+
+    public LinkedList<Billetera> getListaBilleteras() {
+        return listaBilleteras;
+    }
+
+    public void setListaBilleteras(LinkedList<Billetera> listaBilleteras) {
+        this.listaBilleteras = listaBilleteras;
     }
 }
