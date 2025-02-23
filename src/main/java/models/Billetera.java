@@ -1,6 +1,7 @@
 package models;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.util.LinkedList;
 
@@ -59,17 +60,25 @@ public class Billetera {
         System.out.println(saldo);
     }
 
+    // Funcion para agregar transaccion a la lista
+    public boolean agregarTransaccion(Transaccion transaccion) {
+        return listaTransacciones.add(transaccion);
+    }
+
     // Función para mostrar Transacciones de la cuenta
     public void consultarTrasacciones(){
         System.out.println(listaTransacciones);
     }
 
     // Función para realizar transaccion
-    public boolean realizarTransaccion(float cantidad,Billetera destino){
+    public boolean realizarTransaccion(float cantidad,Categoria categoria, Billetera destino){
         boolean centinela = false;
         if(cantidad >= saldo-200){
+            Transaccion transaccion = new Transaccion(cantidad, LocalDateTime.now(), categoria,this,destino);
             destino.setSaldo(destino.getSaldo()+cantidad);
-            saldo -= cantidad + 200;
+            saldo -= cantidad;
+            agregarTransaccion(transaccion);
+            destino.agregarTransaccion(transaccion);
             centinela = true;
         } else{
             System.out.println("Saldo insuficiente, su saldo actual es: " + getSaldo());
