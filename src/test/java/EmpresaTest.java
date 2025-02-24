@@ -45,7 +45,7 @@ public class EmpresaTest {
             boolean validacion1 = empresa.validarIdUnicoBilletera(mismoCodigo);
             assertTrue(validacion1);
         }
-        //Se verifica que cuando dos codigos no son iguales, se espera un false
+        //Se verifica que cuando dos codigos no son iguales, se espera un false.
         String nuevoCodigo = empresa.crearIdUnicoBilletera();
         boolean validacion2 = empresa.validarIdUnicoBilletera(nuevoCodigo);
         assertFalse(validacion2);
