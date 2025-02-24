@@ -59,6 +59,7 @@ public class Empresa {
         for (Usuario usuario : listaUsuarios) {
             if(usuario.getNumeroIdentificacion().equals(id)) {
                 existe = true;
+                break;
             }
         }
         return existe;
@@ -100,6 +101,7 @@ public class Empresa {
         for(Usuario usuario : listaUsuarios) {
             if(usuario.getNumeroIdentificacion().equals(id)) {
                 centinela = usuario;
+                break;
             }
         }
         return centinela;
