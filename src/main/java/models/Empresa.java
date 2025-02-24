@@ -47,6 +47,8 @@ public class Empresa {
         boolean centinela = false;
         if (!idUsuarioExiste(usuario.getNumeroIdentificacion())){
             listaUsuarios.add(usuario);
+            centinela = true;
+            return centinela;
         }
         return centinela;
     }
@@ -63,7 +65,7 @@ public class Empresa {
     }
 
     // Función para eliminar Usuario
-    private boolean eliminarUsuario(String id) {
+    public boolean eliminarUsuario(String id) {
         boolean centinela = false;
         for(Usuario usuario : listaUsuarios) {
             if(usuario.getNumeroIdentificacion().equals(id)) {
@@ -76,7 +78,7 @@ public class Empresa {
     }
 
     // Función para Actualizar Usuario
-    private boolean actualizarUsuario(String id, Usuario actualizado){
+    public boolean actualizarUsuario(String id, Usuario actualizado){
         boolean centinela = false;
         for(Usuario usuario : listaUsuarios) {
             if(usuario.getNumeroIdentificacion().equals(id)) {
@@ -105,7 +107,7 @@ public class Empresa {
 
     //-------------------CRUD Billetera--------------------------//
     // Función para validar que el Id no exista
-    private boolean validarIdUnicoBilletera(String id){
+    public boolean validarIdUnicoBilletera(String id){
         boolean centinela = false;
         for(Billetera billetera : listaBilleteras) {
             if (billetera.getIdUnico().equals(id)) {
@@ -117,7 +119,7 @@ public class Empresa {
     }
 
     // Función para crear Id de 10 digitos aleatorios
-    private String crearIdUnicoBilletera(){
+    public String crearIdUnicoBilletera(){
         String idUnico = "";
         do {
             for (int i = 0; i < 10; i++) {
