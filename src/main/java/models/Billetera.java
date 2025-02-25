@@ -71,17 +71,17 @@ public class Billetera {
     }
 
     // Función para realizar transaccion
-    public boolean realizarTransaccion(float cantidad,Categoria categoria, Billetera destino){
+    public boolean realizarTransaccion(float cantidad, Categoria categoria, Billetera destino){
         boolean centinela = false;
-        if(cantidad >= saldo-200){
+        if(cantidad > saldo - 200){
+            System.out.println("Saldo insuficiente, su saldo actual es: " + getSaldo());
+        } else{
             Transaccion transaccion = new Transaccion(cantidad, LocalDateTime.now(), categoria,this,destino);
             destino.setSaldo(destino.getSaldo()+cantidad);
-            saldo -= cantidad;
+            saldo -= cantidad + 200;
             agregarTransaccion(transaccion);
             destino.agregarTransaccion(transaccion);
             centinela = true;
-        } else{
-            System.out.println("Saldo insuficiente, su saldo actual es: " + getSaldo());
         }
         return centinela;
     }
