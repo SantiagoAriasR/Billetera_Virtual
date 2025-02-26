@@ -71,10 +71,10 @@ public class Billetera {
     }
 
     // Función para realizar transaccion
-    public boolean realizarTransaccion(float cantidad, Categoria categoria, Billetera destino){
+    public boolean realizarTransaccion(float cantidad, Categoria categoria, Billetera destino) throws Exception{
         boolean centinela = false;
         if(cantidad > saldo - 200){
-            System.out.println("Saldo insuficiente, su saldo actual es: " + getSaldo());
+            throw new Exception("Saldo insuficiente, su saldo actual es: " + getSaldo());
         } else{
             Transaccion transaccion = new Transaccion(cantidad, LocalDateTime.now(), categoria,this,destino);
             destino.setSaldo(destino.getSaldo()+cantidad);
@@ -98,7 +98,7 @@ public class Billetera {
 
     //---------------------------- Funciones funcionales----------------------------//
     // Función para obtener las transacciones en un tiempo determinado (Entre dos fechas)
-    public LinkedList<Transaccion> obtenerTransaccionTiempoDeterminado(LocalDate fechaInicio, LocalDate fechaFin){
+    public LinkedList<Transaccion> obtenerTransaccionTiempoDeterminado(LocalDate fechaInicio, LocalDate fechaFin)throws Exception{
         LinkedList<Transaccion> transacciones = new LinkedList<>();
         if(fechaInicio.isBefore(fechaFin)) {
             for(Transaccion transaccion : listaTransacciones){
@@ -107,7 +107,7 @@ public class Billetera {
                 }
             }
         }else{
-            System.out.println("Se ingreso una fecha de inicio mayor a la fecha de fin");
+            throw new Exception("Se ingreso una fecha de inicio mayor a la fecha de fin");
         }
         return transacciones;
     }
@@ -149,7 +149,7 @@ public class Billetera {
     }
 
     // Funcion para discriminar gastos por categoría
-    public float calcularGastosCategoriaMes(YearMonth fecha, Categoria categoria){
+    public float discriminarGastosCategoriaMes(YearMonth fecha, Categoria categoria){
         float gastos = 0;
         LinkedList<Transaccion> transacciones = obtenerTransaccionesMes(fecha);
         for (Transaccion transaccion : transacciones) {
@@ -167,7 +167,7 @@ public class Billetera {
         float promedioGastosMes = (calcularGastosMes(fecha) / total) * 100;
         String consulta = "El porcentaje de gastos en el mes " + fecha + " es " + promedioGastosMes + " y corresponden a:\n";
         for (Categoria categoria : Categoria.values()) {
-            float gastosCategoria = calcularGastosCategoriaMes(fecha, categoria);
+            float gastosCategoria = discriminarGastosCategoriaMes(fecha, categoria);
             float porcentajeCategoria = (gastosCategoria/total)*100;
             consulta += "Los gastos por " + categoria +  " es de  " + gastosCategoria + " corresponde al: " + porcentajeCategoria + "%\n";
         }
